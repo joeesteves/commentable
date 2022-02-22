@@ -6,6 +6,8 @@ defmodule Commentable.Repo.Migrations.CreateComments do
       add :commentable_type, :string
       add :commentable_id, :integer
       add :body, :string
+
+      timestamps()
     end
 
     create index(:comments, [:commentable_id, :commentable_type])

@@ -13,13 +13,13 @@ defmodule Commentable do
     |> Repo.insert()
   end
 
-@doc """
-  Include this macro to a schema to make it taggable
+  @doc """
+  Include this macro in schema block to make it commentable
   """
   defmacro commentable do
     quote do
       has_many :comments, Comment,
-        where: [commentale_type: "#{__MODULE__}"],
+        where: [commentable_type: "#{__MODULE__}"],
         foreign_key: :commentable_id
     end
   end
