@@ -1,3 +1,5 @@
+[![Elixir CI](https://github.com/ponyesteves/commentable/actions/workflows/elixir.yml/badge.svg)](https://github.com/ponyesteves/commentable/actions/workflows/elixir.yml)
+
 # Commentable
 
 **TODO: Add description**
