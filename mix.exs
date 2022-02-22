@@ -8,7 +8,9 @@ defmodule Commentable.MixProject do
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      description: description(),
+      package: package()
     ]
   end
 
@@ -27,6 +29,18 @@ defmodule Commentable.MixProject do
      {:ecto_sql, "~> 3.0"},
      {:postgrex, ">= 0.0.0"}
 
+    ]
+  end
+
+   defp description() do
+    "Add commentable capabilities to your schemas straight away"
+  end
+
+  def package do
+    [
+      name: "commentable",
+      links: %{"GitHub" => "https://github.com/ponyesteves/commentable"},
+      licenses: ["MIT"]
     ]
   end
 
