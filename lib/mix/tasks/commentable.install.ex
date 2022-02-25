@@ -29,7 +29,6 @@ defmodule Mix.Tasks.Commentable.Install do
         )
 
         File.read!(target_path)
-        |> String.replace(~r/commentable/, host_name())
         |> (&File.write!(target_path, &1)).()
       end)
     else
