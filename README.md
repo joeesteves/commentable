@@ -46,22 +46,15 @@ myProject> mix ecto.migrate
 
 
 <pre>
-defmodule Mate.Conty.Entry do
+defmodule MyApp.Post do
   @moduledoc false
   use Ecto.Schema
   <mark>use Commentable</mark>
 
-  import Ecto.Changeset
-
-  alias Mate.Conty.{Account, Entry, EntryItem}
-
   schema "entries" do
     field :date, :date
-    field :type, :string
-
-    belongs_to(:entry_group, Entry)
-
-    has_many(:entry_items, EntryItem)
+    field :title, :string
+    field :body, :string
 
     (...)
 
@@ -74,6 +67,25 @@ defmodule Mate.Conty.Entry do
 end
 </pre>
 
+## Use
+
+```elixir
+iex> alias MyApp.{Post, Repo}
+
+iex> post = Repo.get(Post, 25)
+
+## comment a post
+iex> Commentable.comment(post, %Comment{body: "This comment will be added to Post"})
+iex> {:ok, %Comment{...}}
+
+## list comments on a post
+iex> Commentable.list_comments(post)
+iex> [%Comment{...}]
+
+## load post with comments
+iex> Commentable.load_comments(post)
+iex> %Post{..., comments: [%Comment{...}]}
+```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
