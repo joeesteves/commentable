@@ -15,7 +15,7 @@ defmodule Commentable.Comment do
   end
 
   @doc false
-  def changeset(comment, attrs) do
+  def changeset(comment, attrs \\ %{}) do
     comment
     |> cast(attrs, [:commentable_id, :commentable_type, :body])
     |> validate_required([:commentable_id, :commentable_type, :body])
