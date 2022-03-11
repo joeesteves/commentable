@@ -7,8 +7,6 @@ defmodule Commentable.Repo.Migrations.CreateComments do
       add(:commentable_id, :integer)
       add(:body, :string)
 
-      add(:attachment_urls, {:array, :string}, null: false, default: [])
-
       timestamps()
     end
 

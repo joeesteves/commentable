@@ -11,7 +11,7 @@ defmodule Commentable.Comment do
 
     field :body, :string
 
-    field :attachment_urls, {:array, :string}, default: []
+    has_many :attachments, Commentable.Attachment
 
     timestamps()
   end
@@ -19,7 +19,8 @@ defmodule Commentable.Comment do
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:commentable_id, :commentable_type, :body, :attachment_urls])
+    |> cast(attrs, [:commentable_id, :commentable_type, :body])
+    |> cast_assoc(:attachments)
     |> validate_required([:commentable_id, :commentable_type, :body])
   end
 end

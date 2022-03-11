@@ -19,13 +19,6 @@ defmodule Commentable do
     })
   end
 
-  @spec comment(commentable, %Comment{}) :: {:ok, %Comment{}} | {:error, any()}
-  def comment(commentable, %Comment{} = comment) do
-    commentable
-    |> comment_changeset()
-    |> repo().insert()
-  end
-
   def create_comment(attrs) do
     %Comment{}
     |> Comment.changeset(attrs)
