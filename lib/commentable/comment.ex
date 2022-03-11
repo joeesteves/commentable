@@ -11,13 +11,15 @@ defmodule Commentable.Comment do
 
     field :body, :string
 
+    field :attachment_urls, {:array, :string}, default: []
+
     timestamps()
   end
 
   @doc false
-  def changeset(comment, attrs \\ %{}) do
+  def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:commentable_id, :commentable_type, :body])
+    |> cast(attrs, [:commentable_id, :commentable_type, :body, :attachment_urls])
     |> validate_required([:commentable_id, :commentable_type, :body])
   end
 end
