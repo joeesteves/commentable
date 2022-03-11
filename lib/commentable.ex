@@ -9,6 +9,12 @@ defmodule Commentable do
     hd(Application.get_env(:commentable, :ecto_repos))
   end
 
+  def get_comment(comment_id) do
+    Comment
+    |> repo().get(comment_id)
+    |> repo().preload(:attachments)
+  end
+
   @type commentable :: %{__struct__: String.t(), id: integer()}
 
   @spec comment_changeset(commentable) :: any()
@@ -39,13 +45,13 @@ defmodule Commentable do
   @spec load_comments(commentable) :: any()
   def load_comments(commentable) do
     commentable
-    |> repo().preload(:comments)
+    |> repo().preload(comments: :attachments)
   end
 
   @spec list_comments(commentable) :: [Comment]
   def list_comments(commentable) do
     commentable
-    |> repo().preload(:comments)
+    |> repo().preload(comments: :attachments)
     |> Map.get(:comments)
   end
 
